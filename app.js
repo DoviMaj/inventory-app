@@ -3,20 +3,20 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+require("dotenv").config();
 
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const homeRouter = require("./routes/home");
 
 const app = express();
 
 //Set up mongoose connection
-var mongoose = require("mongoose");
-var dev_db_url =
-  "mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.lo44v.mongodb.net/inventory_app?retryWrites=true&w=majority";
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+const mongoose = require("mongoose");
+const dev_db_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.lo44v.mongodb.net/inventory_app?retryWrites=true&w=majority`;
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // view engine setup
@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/home", homeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
