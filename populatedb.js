@@ -31,7 +31,7 @@ function categoryCreate(name, description, cb) {
       cb(err, null);
       return;
     }
-    console.log("New category: " + author);
+    console.log("New category: " + category);
     categories.push(category);
     cb(null, category);
   });
@@ -40,8 +40,8 @@ function categoryCreate(name, description, cb) {
 function itemCreate(
   name,
   description,
-  img_url,
   category,
+  img_url,
   price,
   number_in_stock,
   cb
@@ -49,11 +49,11 @@ function itemCreate(
   itemdetail = {
     name,
     description,
+    category,
     img_url,
     price,
     number_in_stock,
   };
-  if (category != false) itemdetail.category = category;
 
   const item = new Item(itemdetail);
   item.save(function (err) {
@@ -105,7 +105,7 @@ function createItems(cb) {
         itemCreate(
           "Danmu Garden Decor",
           `Danmu Garden Decor, 4pcs (Random Color) Ceramic Mushroom for Garden, Yard, Fairy Garden - Lawn Ornament Décor, Pottery Ornament 4.52" in Height`,
-          "Garden",
+          categories[2],
           "https://images-na.ssl-images-amazon.com/images/I/71Q6LgTa7KL._AC_SX569_.jpg",
           9,
           23,
@@ -116,7 +116,7 @@ function createItems(cb) {
         itemCreate(
           "Cosylove Clear Cut Crystal Ball Prisms ",
           "Cosylove Clear Cut Crystal Ball Prisms Chandelier Sun Catcher Hanging Crystals Ornament, Home Garden Office Decoration with Gift Box,Christmas Wedding Pendant Purple Dreamcatcher",
-          "Garden",
+          categories[2],
           "https://images-na.ssl-images-amazon.com/images/I/71tq9oezPJL._AC_SX522_.jpg",
           10,
           223,
@@ -127,7 +127,7 @@ function createItems(cb) {
         itemCreate(
           "Bird Animal Garden Statues Figurine",
           "Funny Sculpture Ornaments Décor - Best Indoor Outdoor Statues Yard Art Figurines for Patio Lawn House (Blue + Orange Bird)",
-          "Garden",
+          categories[2],
           "https://images-na.ssl-images-amazon.com/images/I/61U7JGLh0fL._AC_SX522_.jpg",
           21,
           123,
@@ -138,7 +138,7 @@ function createItems(cb) {
         itemCreate(
           "Silicone Cooking Utensil Set",
           "AILUKI Kitchen Utensils 17 Pcs Cooking Utensils Set,Non-stick Heat Resistant Silicone,Cookware with Stainless Steel Handle (rose gold)",
-          "Kitchen",
+          categories[1],
           "https://images-na.ssl-images-amazon.com/images/I/71oA3WYGW4L._AC_SX569_.jpg",
           41,
           1223,
@@ -149,7 +149,7 @@ function createItems(cb) {
         itemCreate(
           "SimpleHouseware",
           "Stackable Can Rack Organizer, Silver",
-          "Kitchen",
+          categories[1],
           "https://images-na.ssl-images-amazon.com/images/I/915jv1h3DzL._AC_SX569_.jpg",
           41,
           1223,
@@ -160,7 +160,7 @@ function createItems(cb) {
         itemCreate(
           "Blige SMTF Cute Animal Soft Baby Socks",
           "Toys Wrist Rattles and Foot Finders for Fun Butterflies and Lady bugs Set 4 pcs",
-          "Baby",
+          categories[0],
           "https://images-na.ssl-images-amazon.com/images/I/61VUQRWPZAL._SX522_.jpg",
           41,
           1223,
@@ -171,7 +171,7 @@ function createItems(cb) {
         itemCreate(
           "Simple Joys by Carter's Girls",
           "6-Piece Bodysuits (Short and Long Sleeve) and Pants Set",
-          "Baby",
+          categories[0],
           "https://images-na.ssl-images-amazon.com/images/I/81kcdsSnDqL._AC_UY445_.jpg",
           41,
           1223,
@@ -182,7 +182,7 @@ function createItems(cb) {
         itemCreate(
           "teytoy My First Soft Book",
           "Nontoxic Fabric Baby Cloth Books Early Education Toys Activity Crinkle Cloth Book for Toddler, Infants and Kids Perfect for Baby Shower -Pack of 6",
-          "Baby",
+          categories[0],
           "https://images-na.ssl-images-amazon.com/images/I/714XCyNu%2BFL._AC_SX569_.jpg",
           41,
           1223,
