@@ -1,13 +1,27 @@
 const Category = require("../models/category");
+const Item = require("../models/item");
 const { body, validationResult } = require("express-validator");
-var async = require("async");
-const category = require("../models/category");
+const async = require("async");
 
-exports.index = async function (req, res, callback) {
-  const item_list = await Book.countDocuments({});
-  if (err) {
-    return next(err);
-  }
-  //Successful, so render
-  res.render("item_list", { title: "Item List", item_list });
+exports.index = function (req, res) {
+  async.parallel(
+    {
+      item_count: function (callback) {
+        Item.countDocuments({}, callback); // Pass an empty object as match condition to find all documents of this collection
+      },
+      category_count: function (callback) {
+        Category.countDocuments({}, callback);
+      },
+      item_list: function (callback) {
+        Item.find({}, "img_url name category").limit(10).exec(callback);
+      },
+    },
+    function (err, results) {
+      res.render("index", {
+        title: "Home",
+        error: err,
+        data: results,
+      });
+    }
+  );
 };
