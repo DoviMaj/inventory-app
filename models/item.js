@@ -1,12 +1,13 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var ItemSchema = new Schema({
+const ItemSchema = new Schema({
   name: { type: String, required: true, minlength: 3, maxlength: 100 },
   description: { type: String, required: true, minlength: 3, maxlength: 100 },
   category: [{ type: Schema.Types.ObjectId, ref: "Category" }],
-  price: { type: Number, required: true, minlength: 3, maxlength: 100 },
+  img_url: { type: String, required: false },
+  price: { type: Number, required: true },
   number_in_stock: { type: Number, required: true },
 });
 
