@@ -196,7 +196,7 @@ function createItems(cb) {
 }
 
 async.series(
-  [createItems, createCategories],
+  [createCategories, createItems],
   // Optional callback
   function (err, results) {
     if (err) {
