@@ -1,0 +1,18 @@
+extends layout
+block content
+  include navbar.pug
+  form(action='/items', method='POST' class='item-create-form') 
+      h1 New Item
+      
+      div(class='form-div') 
+        | Title: 
+        input(type='text', name='name', value='')
+        |          Category: 
+        select
+          each category in data.category_list
+            option(value=category.id) #{category.name}
+        |          Price: 
+        input(type='text', name='price', value='')
+        |          Number in stock: 
+        input(type='text', name='number_in_stock', value='')
+      input(type='submit', value='Submit')
