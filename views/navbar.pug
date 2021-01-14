@@ -1,0 +1,4 @@
+nav(class='navbar')
+    a(href='/items') Home
+    each category in data.category_list
+      a(href='/categories/' + category._id) !{category.name}
