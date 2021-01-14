@@ -138,7 +138,7 @@ function createItems(cb) {
         itemCreate(
           "Silicone Cooking Utensil Set",
           "AILUKI Kitchen Utensils 17 Pcs Cooking Utensils Set,Non-stick Heat Resistant Silicone,Cookware with Stainless Steel Handle (rose gold)",
-          categories[1],
+          categories[0],
           "https://images-na.ssl-images-amazon.com/images/I/71oA3WYGW4L._AC_SX569_.jpg",
           41,
           1223,
@@ -149,7 +149,7 @@ function createItems(cb) {
         itemCreate(
           "SimpleHouseware",
           "Stackable Can Rack Organizer, Silver",
-          categories[1],
+          categories[0],
           "https://images-na.ssl-images-amazon.com/images/I/915jv1h3DzL._AC_SX569_.jpg",
           41,
           1223,
@@ -160,7 +160,7 @@ function createItems(cb) {
         itemCreate(
           "Blige SMTF Cute Animal Soft Baby Socks",
           "Toys Wrist Rattles and Foot Finders for Fun Butterflies and Lady bugs Set 4 pcs",
-          categories[0],
+          categories[1],
           "https://images-na.ssl-images-amazon.com/images/I/61VUQRWPZAL._SX522_.jpg",
           41,
           1223,
@@ -171,7 +171,7 @@ function createItems(cb) {
         itemCreate(
           "Simple Joys by Carter's Girls",
           "6-Piece Bodysuits (Short and Long Sleeve) and Pants Set",
-          categories[0],
+          categories[1],
           "https://images-na.ssl-images-amazon.com/images/I/81kcdsSnDqL._AC_UY445_.jpg",
           41,
           1223,
@@ -182,7 +182,7 @@ function createItems(cb) {
         itemCreate(
           "teytoy My First Soft Book",
           "Nontoxic Fabric Baby Cloth Books Early Education Toys Activity Crinkle Cloth Book for Toddler, Infants and Kids Perfect for Baby Shower -Pack of 6",
-          categories[0],
+          categories[1],
           "https://images-na.ssl-images-amazon.com/images/I/714XCyNu%2BFL._AC_SX569_.jpg",
           41,
           1223,
