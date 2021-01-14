@@ -8,11 +8,10 @@ const category_controller = require("../controllers/categoryController");
 /// Items ROUTES ///
 
 // GET home page.
-
 router.get("/", item_controller.index);
 
-// // GET request for creating a Item. NOTE This must come before routes that display Item (uses id).
-// router.get("/item/create", item_controller.item_create_get);
+// GET request for creating a Item. NOTE This must come before routes that display Item (uses id).
+router.get("/item_create", item_controller.item_create_get);
 
 // // POST request for creating Item.
 // router.post("/item/create", item_controller.item_create_post);
