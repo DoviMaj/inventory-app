@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  form(action='/', method='POST' class='item-create-form') 
+      h1 New Category
+      
+      div(class='form-div') 
+        | Title: 
+        input(type='text', name='name', value='')
+        |          Description: 
+        input(type='text', name='description', value='')
+      input(type='submit', value='Submit' class='submit-button')  
