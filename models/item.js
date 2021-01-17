@@ -13,7 +13,7 @@ const ItemSchema = new Schema({
 
 // Virtual for genre's URL
 ItemSchema.virtual("url").get(function () {
-  return "/catalog/category/item" + this._id;
+  return "/items/" + this._id;
 });
 
 module.exports = mongoose.model("Item", ItemSchema);
