@@ -1,11 +1,7 @@
-
 div(class='items-wrapper')
-   a(href='/items/item_create' class='new-item-link') New Item 
-   h1(class='items-title') Items:
-   
    each item in data.item_list
         div(class='item-preview') 
-          a(href='/items/' + item._id)
+          a(href=item.url)
              img(src=item.img_url)
              h2= item.name
-             a(href='/categories/' + item.category._id) !{item.category.name}     
+             a(href='/categories/' + item.category.name) !{item.category.name}     
