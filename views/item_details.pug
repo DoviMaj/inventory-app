@@ -1,11 +1,18 @@
 extends layout
 block content
-  form(action='' method='POST')
-      button Delete Item
+  div(class='item-buttons')
+    div(class='delete-item')
+      - const url = `${data.item_details.url}/delete`;
+      form(action=url method='POST')
+          button(type='submit') Delete Item
+    div(class='delete-item update')
+      - const updateUrl = `${data.item_details.url}/update`;
+      form(action=updateUrl method='GET')
+          button(type='submit') Update Item
   div(class='item-details')
     h1= data.item_details.name
     p= data.item_details.description
     img(src=data.item_details.img_url, alt="item-img")
     p Price: !{data.item_details.price}$
     a(href='/categories/' + data.item_details.category.name) !{data.item_details.category.name}
-    
+  
