@@ -41,7 +41,7 @@ function itemCreate(
   name,
   description,
   category,
-  img_url,
+  img,
   price,
   number_in_stock,
   cb
@@ -50,7 +50,7 @@ function itemCreate(
     name,
     description,
     category,
-    img_url,
+    img,
     price,
     number_in_stock,
   };
@@ -97,7 +97,7 @@ function createCategories(cb) {
   );
 }
 
-// "name, description, img_url, category, price, number_in_stock",
+// "name, description, img, category, price, number_in_stock",
 function createItems(cb) {
   async.parallel(
     [
@@ -106,7 +106,7 @@ function createItems(cb) {
           "Danmu Garden Decor",
           `Danmu Garden Decor, 4pcs (Random Color) Ceramic Mushroom for Garden, Yard, Fairy Garden - Lawn Ornament Décor, Pottery Ornament 4.52" in Height`,
           categories[2],
-          "https://images-na.ssl-images-amazon.com/images/I/71Q6LgTa7KL._AC_SX569_.jpg",
+          "", // "https://images-na.ssl-images-amazon.com/images/I/71Q6LgTa7KL._AC_SX569_.jpg",
           9,
           23,
           callback
@@ -117,7 +117,8 @@ function createItems(cb) {
           "Cosylove Clear Cut Crystal Ball Prisms ",
           "Cosylove Clear Cut Crystal Ball Prisms Chandelier Sun Catcher Hanging Crystals Ornament, Home Garden Office Decoration with Gift Box,Christmas Wedding Pendant Purple Dreamcatcher",
           categories[2],
-          "https://images-na.ssl-images-amazon.com/images/I/71tq9oezPJL._AC_SX522_.jpg",
+          "",
+          // "https://images-na.ssl-images-amazon.com/images/I/71tq9oezPJL._AC_SX522_.jpg",
           10,
           223,
           callback
@@ -128,7 +129,8 @@ function createItems(cb) {
           "Bird Animal Garden Statues Figurine",
           "Funny Sculpture Ornaments Décor - Best Indoor Outdoor Statues Yard Art Figurines for Patio Lawn House (Blue + Orange Bird)",
           categories[2],
-          "https://images-na.ssl-images-amazon.com/images/I/61U7JGLh0fL._AC_SX522_.jpg",
+          "",
+          // "https://images-na.ssl-images-amazon.com/images/I/61U7JGLh0fL._AC_SX522_.jpg",
           21,
           123,
           callback
@@ -139,7 +141,8 @@ function createItems(cb) {
           "Silicone Cooking Utensil Set",
           "AILUKI Kitchen Utensils 17 Pcs Cooking Utensils Set,Non-stick Heat Resistant Silicone,Cookware with Stainless Steel Handle (rose gold)",
           categories[0],
-          "https://images-na.ssl-images-amazon.com/images/I/71oA3WYGW4L._AC_SX569_.jpg",
+          "",
+          // "https://images-na.ssl-images-amazon.com/images/I/71oA3WYGW4L._AC_SX569_.jpg",
           41,
           1223,
           callback
@@ -150,7 +153,8 @@ function createItems(cb) {
           "SimpleHouseware",
           "Stackable Can Rack Organizer, Silver",
           categories[0],
-          "https://images-na.ssl-images-amazon.com/images/I/915jv1h3DzL._AC_SX569_.jpg",
+          "",
+          // "https://images-na.ssl-images-amazon.com/images/I/915jv1h3DzL._AC_SX569_.jpg",
           41,
           1223,
           callback
@@ -161,7 +165,8 @@ function createItems(cb) {
           "Blige SMTF Cute Animal Soft Baby Socks",
           "Toys Wrist Rattles and Foot Finders for Fun Butterflies and Lady bugs Set 4 pcs",
           categories[1],
-          "https://images-na.ssl-images-amazon.com/images/I/61VUQRWPZAL._SX522_.jpg",
+          "",
+          // "https://images-na.ssl-images-amazon.com/images/I/61VUQRWPZAL._SX522_.jpg",
           41,
           1223,
           callback
@@ -172,7 +177,8 @@ function createItems(cb) {
           "Simple Joys by Carter's Girls",
           "6-Piece Bodysuits (Short and Long Sleeve) and Pants Set",
           categories[1],
-          "https://images-na.ssl-images-amazon.com/images/I/81kcdsSnDqL._AC_UY445_.jpg",
+          "",
+          // "https://images-na.ssl-images-amazon.com/images/I/81kcdsSnDqL._AC_UY445_.jpg",
           41,
           1223,
           callback
@@ -183,7 +189,8 @@ function createItems(cb) {
           "teytoy My First Soft Book",
           "Nontoxic Fabric Baby Cloth Books Early Education Toys Activity Crinkle Cloth Book for Toddler, Infants and Kids Perfect for Baby Shower -Pack of 6",
           categories[1],
-          "https://images-na.ssl-images-amazon.com/images/I/714XCyNu%2BFL._AC_SX569_.jpg",
+          "",
+          // "https://images-na.ssl-images-amazon.com/images/I/714XCyNu%2BFL._AC_SX569_.jpg",
           41,
           1223,
           callback

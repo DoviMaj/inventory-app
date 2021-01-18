@@ -1,6 +1,7 @@
 extends layout
 block content
-  div(class='item-buttons')
+  div(class='item-buttons') 
+  p !{data.item}
     div(class='delete-item')
       - const url = `${data.item_details.url}/delete`;
       form(action=url method='POST')
@@ -12,7 +13,9 @@ block content
   div(class='item-details')
     h1= data.item_details.name
     p= data.item_details.description
-    img(src=data.item_details.img_url, alt="item-img")
+    p=data.item_details.img.data
+    - const imgUrl = `/uploads/${data.item_details.img.path}`
+    img(src=data.item_details.img, alt="item-img")
     p Price: !{data.item_details.price}$
     a(href='/categories/' + data.item_details.category.name) !{data.item_details.category.name}
   

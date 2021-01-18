@@ -5,7 +5,7 @@ const async = require("async");
 const url = require("url");
 const { render } = require("pug");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const fs = require("fs");
 
 exports.index = function (req, res) {
   async.parallel(
@@ -17,7 +17,7 @@ exports.index = function (req, res) {
         Category.countDocuments({}, callback);
       },
       item_list: function (callback) {
-        Item.find({}, "img_url name category").exec(callback);
+        Item.find({}, "img name category").exec(callback);
       },
       category_list: function (callback) {
         Category.find({}, "name").exec(callback);
@@ -98,6 +98,7 @@ exports.item_create_post = [
 
   // Process request after validation and sanitization.
   async (req, res, next) => {
+    console.log(req.file);
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
@@ -112,6 +113,11 @@ exports.item_create_post = [
       _id: req.body.id,
     });
 
+    if (req.file) {
+      item.img.data = fs.readFileSync(req.files.image.path);
+      item.img.contentType = "image/png";
+    }
+
     // Get all authors and genres for form.
     async.parallel(
       {
@@ -125,10 +131,11 @@ exports.item_create_post = [
         }
         // There are errors. Render form again with sanitized values/error messages.
         if (!errors.isEmpty()) {
-          res.render("item_create", {
+          res.render("item_form", {
             name: req.body.name,
             description: req.body.description,
             category,
+            img: item.img,
             price: req.body.price,
             number_in_stock: req.body.number_in_stock,
             data: results,
@@ -141,9 +148,6 @@ exports.item_create_post = [
             if (err) {
               return next(err);
             }
-            async () => {
-              await Item.findById(req.body._id);
-            };
             //successful - redirect to new item.
             res.redirect("/items/" + item._id);
           });
@@ -169,6 +173,7 @@ exports.item_update_get = async function (req, res, next) {
         title: "Update",
         data,
         name: item.name,
+        img: item.img,
         description: item.description,
         number_in_stock: item.number_in_stock,
         price: item.price,

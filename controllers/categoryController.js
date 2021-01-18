@@ -12,6 +12,9 @@ exports.get_category_items = async function (req, res, next) {
       category_list: function (callback) {
         Category.find({}).exec(callback);
       },
+      thisCategory: function (callback) {
+        Category.find({ name: req.params.name }).exec(callback);
+      },
     },
     function (err, results) {
       if (err) {
@@ -28,9 +31,9 @@ exports.get_category_items = async function (req, res, next) {
       );
       let data = results;
       data.item_list = item_list;
-      console.log(results);
       // Successful, so render.
       res.render("index", {
+        isCategory: true,
         title: req.params.name,
         data,
       });
@@ -128,3 +131,8 @@ exports.category_create_post = [
     return;
   },
 ];
+
+exports.category_delete_post = async function (req, res, next) {
+  await Category.findOneAndDelete({ name: req.params.name });
+  res.redirect("/items");
+};
