@@ -13,16 +13,7 @@ router.post("/new", category_controller.category_create_post);
 // // GET request for one category.
 router.get("/:name", category_controller.get_category_items);
 
-// // GET request to delete category.
-// router.get("/:id/delete", category_controller.category_delete_get);
-
-// // POST request to delete category.
-// router.post("/:id/delete", category_controller.category_delete_post);
-
-// // GET request to update category.
-// router.get("/:id/update", category_controller.category_update_get);
-
-// // POST request to update category.
-// router.post("/:id/update", category_controller.category_update_post);
+// POST request to delete category.
+router.post("/:name/delete", category_controller.category_delete_post);
 
 module.exports = router;
