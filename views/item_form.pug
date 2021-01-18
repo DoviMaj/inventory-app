@@ -1,13 +1,14 @@
 extends layout
 block content
-  form(action='/items/new', method='POST' class='item-create-form') 
-      h1 New Item
-      
+  form(action='/items/new', method='POST' class='item-create-form' enctype="multipart/form-data") 
+      h1= title
       div(class='form-div') 
         label(for='name') Title: 
         input(type='text', name='name', value=(undefined=== name ? '' : name))
         label(for='description') Description: 
         input(type='text', name='description', value=(undefined=== description ? '' : description))
+        label(for='image') Image: 
+        input(type="file" name="image")
         label(for='category' name='category') Category: 
         select(name='category' value=(undefined=== category ? '' : category))
           each category in data.category_list

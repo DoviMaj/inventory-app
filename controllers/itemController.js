@@ -3,6 +3,9 @@ const Item = require("../models/item");
 const { body, validationResult } = require("express-validator");
 const async = require("async");
 const url = require("url");
+const { render } = require("pug");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 exports.index = function (req, res) {
   async.parallel(
@@ -41,8 +44,8 @@ exports.item_create_get = async function (req, res) {
       if (err) {
         return next(err);
       }
-      res.render("item_create", {
-        title: "Create Book",
+      res.render("item_form", {
+        title: "New Item",
         data: results,
       });
     }
@@ -117,7 +120,6 @@ exports.item_create_post = [
         },
       },
       function (err, results) {
-        console.log(results.item_details);
         if (err) {
           return next(err);
         }
@@ -153,11 +155,30 @@ exports.item_create_post = [
 ];
 
 exports.item_delete_post = async function (req, res, next) {
-  console.log("hi");
   await Item.findByIdAndDelete(req.params.id);
-  const category_list = await Category.find({});
-  let data = {};
-  data.category_list = category_list;
-  console.log(data);
-  res.redirect("items");
+  res.redirect("/items");
+};
+
+exports.item_update_get = async function (req, res, next) {
+  try {
+    const data = {};
+    data.category_list = await Category.find({});
+    const item = await Item.findById(req.params.id);
+    if (data !== null) {
+      res.render("item_form", {
+        title: "Update",
+        data,
+        name: item.name,
+        description: item.description,
+        number_in_stock: item.number_in_stock,
+        price: item.price,
+      });
+    } else {
+      var err = new Error("Item not found");
+      err.status = 404;
+      return next(err);
+    }
+  } catch (err) {
+    return next(err);
+  }
 };
