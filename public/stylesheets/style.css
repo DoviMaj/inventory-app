@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Rubik", sans-serif, "Lucida Grande", Helvetica, Arial, sans-serif;
   background: aliceblue;
   background-color: rgba(0, 0, 0, 0.849);
   color: white;
@@ -53,11 +53,13 @@ li {
 .item-preview {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: #729cd433;
   background: #00e5ff;
   padding: 10px;
   border-radius: 10px;
   max-width: 200px;
+  min-height: 100px;
   box-shadow: 1px 1px 3px 1px #c0c4dc;
   transition: all 0.4s ease-in-out;
 }
@@ -89,6 +91,7 @@ li {
   margin-top: 20px;
   position: absolute;
   right: 30px;
+  border-radius: 5px;
 }
 
 .item-create-form {
@@ -98,6 +101,7 @@ li {
   color: black;
   margin-top: 30px;
   padding: 30px;
+  border-radius: 5px;
 }
 
 .form-div {
@@ -105,8 +109,8 @@ li {
   flex-direction: column;
   gap: 7px;
 }
+
 .submit-button {
-  border-radius: 0;
   background: #0000009c;
   color: white;
   margin-top: 20px;
@@ -118,7 +122,7 @@ li {
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto 30px;
+  margin: -61px auto 30px;
   align-items: center;
 }
 
@@ -136,4 +140,40 @@ li {
 
 .item-details p {
   font-size: 18px;
+}
+
+.delete-item {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.delete-item button {
+  background: aqua;
+  padding: 10px;
+  border: 1px solid;
+  text-decoration: none;
+  margin-top: 20px;
+  right: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-item.category {
+  width: initial;
+}
+
+.item-buttons {
+  display: flex;
+}
+input,
+select {
+  border: 1px solid aliceblue;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline-color: cornflowerblue;
 }
