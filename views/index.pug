@@ -2,4 +2,9 @@ extends layout
 
 block content
   h1(class='items-title') !{title} Items:
+  if isCategory && data.item_list.length === 0
+    div(class='delete-item category')
+      - const url = `/categories/${title}/delete`;
+      form(action=url method='POST')
+          button(type='submit') Delete Category
   include items_list.pug
