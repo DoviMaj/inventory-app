@@ -92,8 +92,7 @@ exports.item_create_post = [
   )
     .trim()
     .isInt()
-    .withMessage("must be number")
-    .isLength({ min: 3 })
+    .withMessage("must be a number")
     .escape(),
   body("price", "Price must not be empty and must be number.")
     .trim()
