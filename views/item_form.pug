@@ -3,21 +3,21 @@ block content
   form(action='/items/new', method='POST' class='item-create-form') 
       h1= title
       div(class='form-div') 
-        input(type='hidden' name='id' value=(undefined=== id ? '' : id))
+        input(type='hidden' name='id' required value=(undefined=== id ? '' : id))
         label(for='name') Title: 
         input(type='text', name='name', value=(undefined=== name ? '' : name))
         label(for='description') Description: 
-        input(type='text', name='description', value=(undefined=== description ? '' : description))
+        input(type='text', required name='description', value=(undefined=== description ? '' : description))
         label(for='category' name='category') Category: 
-        select(name='category' value=(undefined=== category ? '' : category))
+        select(name='category' required value=(undefined=== category ? '' : category))
           each category in data.category_list
             option(value=category.id) #{category.name}
         label(for='image') Image Url: 
-        input(type='url', name='image', value=(undefined=== img_url ? '' : img_url))
+        input(type='url', required name='image', value=(undefined=== img_url ? '' : img_url))
         label(for='price') Price: 
-        input(type='text', name='price', value=(undefined=== price ? '' : price))
+        input(type='text', required name='price', value=(undefined=== price ? '' : price))
         label(for='number_in_stock') Number in stock: 
-        input(type='text', name='number_in_stock',value=(undefined=== number_in_stock ? '' : number_in_stock))
+        input(type='text', required name='number_in_stock',value=(undefined=== number_in_stock ? '' : number_in_stock))
       input(type='submit', value='Submit' class='submit-button')
   if errors
     ul
