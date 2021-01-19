@@ -1,5 +1,6 @@
 nav(class='navbar')
     a(href='/items') All 
-    each category in data.category_list
-      a(href=category.url) !{category.name}
-    a(href='/categories/new') New
+    if data.category_list
+      each category in data.category_list
+        a(href=category.url) !{category.name}
+      a(href='/categories/new') New
