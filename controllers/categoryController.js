@@ -125,6 +125,10 @@ exports.category_create_post = [
 ];
 
 exports.category_delete_post = async function (req, res, next) {
-  await Category.findOneAndDelete({ name: req.params.name });
-  res.redirect("/items");
+  try {
+    await Category.findOneAndDelete({ name: req.params.name });
+    res.redirect("/items");
+  } catch (err) {
+    return next(err);
+  }
 };

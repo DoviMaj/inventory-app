@@ -156,8 +156,12 @@ exports.item_create_post = [
 ];
 
 exports.item_delete_post = async function (req, res, next) {
-  await Item.findByIdAndDelete(req.params.id);
-  res.redirect("/items");
+  try {
+    await Item.findByIdAndDelete(req.params.id);
+    res.redirect("/items");
+  } catch (err) {
+    return next(err);
+  }
 };
 
 exports.item_update_get = async function (req, res, next) {
