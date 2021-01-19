@@ -83,10 +83,17 @@ li {
   text-align: center;
 }
 
+.title-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
 .new-item-wrapper {
-  margin: 30px 20px 0;
   display: flex;
   justify-content: flex-end;
+  padding: 20px;
 }
 
 .new-item-link {

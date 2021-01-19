@@ -6,8 +6,8 @@ block content
       - const url = `/categories/${title}/delete`;
       form(action=url method='POST')
           button(type='submit') Delete Category
-  div(class='new-item-wrapper')
-    a(href='/items/new' class='new-item-link') New Item 
-    
-  h1(class='items-title') !{title} Items:
+  div(class='title-button-wrapper')
+    h1(class='items-title') !{title} Items:
+    div(class='new-item-wrapper')
+      a(href='/items/new' class='new-item-link') New Item 
   include items_list.pug
