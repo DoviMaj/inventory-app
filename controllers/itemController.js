@@ -92,6 +92,7 @@ exports.item_create_post = [
   )
     .trim()
     .isInt()
+    .withMessage("must be number")
     .isLength({ min: 3 })
     .escape(),
   body("price", "Price must not be empty and must be number.")
@@ -114,7 +115,7 @@ exports.item_create_post = [
       number_in_stock: req.body.number_in_stock,
       _id: req.body.id,
     });
-
+    // console.log(item);
     // Get all authors and genres for form.
     async.parallel(
       {
