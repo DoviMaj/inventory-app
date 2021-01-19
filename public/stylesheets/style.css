@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Rubik", sans-serif, "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Rubik", "Lucida Grande", Helvetica, Arial, sans-serif;
   background: aliceblue;
   background-color: rgba(0, 0, 0, 0.849);
   color: white;
@@ -158,6 +158,7 @@ li {
   right: 30px;
   cursor: pointer;
   border-radius: 5px;
+  font-family: "Rubik";
 }
 
 .delete-item.category {
