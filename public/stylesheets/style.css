@@ -33,6 +33,7 @@ li {
   width: 100%;
   font-size: 1.3em;
   font-weight: 400;
+  flex-wrap: wrap;
 }
 
 .navbar > * {
@@ -86,8 +87,9 @@ li {
 .title-button-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 20px;
+  justify-content: space-between;
+  margin: 0 40px;
 }
 
 .new-item-wrapper {
