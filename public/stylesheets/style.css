@@ -83,15 +83,19 @@ li {
   text-align: center;
 }
 
+.new-item-wrapper {
+  margin: 30px 20px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .new-item-link {
   background: aqua;
   padding: 10px;
   border: 1px solid;
   text-decoration: none;
-  margin-top: 20px;
-  position: absolute;
-  right: 30px;
   border-radius: 5px;
+  flex-shrink: 0;
 }
 
 .item-create-form {
@@ -122,7 +126,7 @@ li {
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  margin: -61px auto 30px;
+  margin: 20px auto 30px;
   align-items: center;
 }
 
@@ -167,7 +171,11 @@ li {
 
 .item-buttons {
   display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
 }
+
 input,
 select {
   border: 1px solid aliceblue;
