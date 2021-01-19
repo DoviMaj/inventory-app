@@ -117,6 +117,12 @@ li {
   border-radius: 5px;
 }
 
+@media (max-width: 466px) {
+  .item-create-form {
+    width: 200px;
+  }
+}
+
 .form-div {
   display: flex;
   flex-direction: column;
