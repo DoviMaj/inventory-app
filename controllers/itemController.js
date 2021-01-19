@@ -2,10 +2,6 @@ const Category = require("../models/category");
 const Item = require("../models/item");
 const { body, validationResult } = require("express-validator");
 const async = require("async");
-const url = require("url");
-const { render } = require("pug");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
 
 exports.index = function (req, res) {
   async.parallel(
@@ -90,11 +86,18 @@ exports.item_create_post = [
     .trim()
     .isLength({ min: 3, max: 1000 })
     .escape(),
-  body("number_in_stock", "Number in stock must not be empty.")
+  body(
+    "number_in_stock",
+    "Number in stock must not be empty and must be number."
+  )
     .trim()
+    .isInt()
     .isLength({ min: 3 })
     .escape(),
-  body("price", "Price must not be empty.").trim().matches("^[0-9]*$").escape(),
+  body("price", "Price must not be empty and must be number.")
+    .trim()
+    .isInt()
+    .escape(),
 
   // Process request after validation and sanitization.
   async (req, res, next) => {
@@ -125,7 +128,7 @@ exports.item_create_post = [
         }
         // There are errors. Render form again with sanitized values/error messages.
         if (!errors.isEmpty()) {
-          res.render("item_create", {
+          res.render("item_form", {
             name: req.body.name,
             description: req.body.description,
             category,
@@ -141,9 +144,6 @@ exports.item_create_post = [
             if (err) {
               return next(err);
             }
-            async () => {
-              await Item.findById(req.body._id);
-            };
             //successful - redirect to new item.
             res.redirect("/items/" + item._id);
           });
@@ -169,6 +169,7 @@ exports.item_update_get = async function (req, res, next) {
         title: "Update",
         data,
         name: item.name,
+        img: item.img,
         description: item.description,
         number_in_stock: item.number_in_stock,
         price: item.price,

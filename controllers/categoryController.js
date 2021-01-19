@@ -12,6 +12,9 @@ exports.get_category_items = async function (req, res, next) {
       category_list: function (callback) {
         Category.find({}).exec(callback);
       },
+      thisCategory: function (callback) {
+        Category.find({ name: req.params.name }).exec(callback);
+      },
     },
     function (err, results) {
       if (err) {
@@ -28,9 +31,9 @@ exports.get_category_items = async function (req, res, next) {
       );
       let data = results;
       data.item_list = item_list;
-      console.log(results);
       // Successful, so render.
       res.render("index", {
+        isCategory: true,
         title: req.params.name,
         data,
       });
@@ -64,14 +67,6 @@ exports.create_category_get = function (req, res, next) {
 };
 
 exports.category_create_post = [
-  // (req, res, next) => {
-  //   if (!(req.body.category instanceof Array)) {
-  //     if (typeof req.body.category === "undefined") req.body.category = [];
-  //     else req.body.category = new Array(req.body.category);
-  //   }
-  //   next();
-  // },
-
   // Validate and sanitise fields.
   body("category", "Title must not be empty.")
     .trim()
@@ -128,3 +123,8 @@ exports.category_create_post = [
     return;
   },
 ];
+
+exports.category_delete_post = async function (req, res, next) {
+  await Category.findOneAndDelete({ name: req.params.name });
+  res.redirect("/items");
+};
