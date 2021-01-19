@@ -111,11 +111,10 @@ exports.item_create_post = [
       name: req.body.name,
       description: req.body.description,
       category,
+      img_url: req.body.image,
       price: req.body.price,
       number_in_stock: req.body.number_in_stock,
-      _id: req.body.id,
     });
-    // console.log(item);
     // Get all authors and genres for form.
     async.parallel(
       {
@@ -133,9 +132,11 @@ exports.item_create_post = [
             name: req.body.name,
             description: req.body.description,
             category,
+            img_url: req.body.image,
             price: req.body.price,
             number_in_stock: req.body.number_in_stock,
             data: results,
+            id: req.body.id,
             errors: errors.array(),
           });
           return;
@@ -169,15 +170,17 @@ exports.item_update_get = async function (req, res, next) {
     const data = {};
     data.category_list = await Category.find({});
     const item = await Item.findById(req.params.id);
+    console.log(item);
     if (data !== null) {
       res.render("item_form", {
         title: "Update",
         data,
         name: item.name,
-        img: item.img,
+        img_url: item.img_url,
         description: item.description,
         number_in_stock: item.number_in_stock,
         price: item.price,
+        id: item._id,
       });
     } else {
       var err = new Error("Item not found");
@@ -188,3 +191,70 @@ exports.item_update_get = async function (req, res, next) {
     return next(err);
   }
 };
+
+exports.item_update_post = [
+  // Validate and sanitise fields.
+  body("name", "Title must not be empty.")
+    .trim()
+    .isLength({ min: 3, max: 100 })
+    .escape(),
+  body("description", "Description must not be empty.")
+    .trim()
+    .isLength({ min: 3, max: 1000 })
+    .escape(),
+  body(
+    "number_in_stock",
+    "Number in stock must not be empty and must be number."
+  )
+    .trim()
+    .isInt()
+    .withMessage("must be number")
+    .isLength({ min: 3 })
+    .escape(),
+  body("price", "Price must not be empty and must be number.")
+    .trim()
+    .isInt()
+    .escape(),
+
+  // Process request after validation and sanitization.
+  async (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create a Item object with escaped and trimmed data.
+    const category = await Category.findOne({ _id: req.body.category });
+    try {
+      const item = await Item.findById(req.body.id);
+      const category_list = Category.find({});
+      if (item !== null) {
+        await Item.findByIdAndUpdate(req.body.id, {
+          name: req.body.name,
+          description: req.body.description,
+          category,
+          img_url: req.body.image,
+          price: req.body.price,
+          number_in_stock: req.body.number_in_stock,
+        });
+        if (!errors.isEmpty()) {
+          res.render("item_form", {
+            name: req.body.name,
+            description: req.body.description,
+            category,
+            img_url: req.body.image,
+            price: req.body.price,
+            number_in_stock: req.body.number_in_stock,
+            data: results,
+            id: req.body.id,
+            errors: errors.array(),
+          });
+          return;
+        } else {
+          res.redirect("/items/" + item._id);
+          return;
+        }
+      }
+    } catch (err) {
+      return next(err);
+    }
+  },
+];
