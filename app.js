@@ -18,7 +18,11 @@ const mongoose = require("mongoose");
 const dev_db_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.lo44v.mongodb.net/inventory_app?retryWrites=true&w=majority`;
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
